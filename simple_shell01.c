@@ -13,41 +13,59 @@ int main(void)
 	char *av[2];
 	pid_t pid;
 	int status;
+	int running = 1;
 
-	while (1)
+	while (running)
 	{
 		printf("$ ");
 		read = getline(&buffer, &len, stdin);
 		if (read == -1)
 		{
-			free(buffer);
-			return (-1);
+			running = 0;
+			printf("\n");
 		}
 		else
 		{
-			buffer[read - 1] = '\0';
-			av[0] = buffer;
-			av[1] = NULL;
-			if (read == 1)
-				continue;
-			pid = fork();
-			if (pid == 0)
-				/*child process*/
+			if (buffer[read - 1] != 10)
 			{
-				if (execve(av[0], av, environ) == -1)
-				{
-					perror("./simple_shell");
-    				}
-			}
-			else if (pid == -1)
-			{
-				free(buffer);
-				return (-1);
+				printf("\n");
+				running = 0;
 			}
 			else
-				wait(&status);
+			{
+				buffer[read - 1] = '\0';
+				av[0] = buffer;
+				av[1] = NULL;
+				if (read == 1)
+					continue;
+				pid = fork();
+				if (pid == 0)
+					/*child process*/
+				{
+					if (execve(av[0], av, environ) == -1)
+					{
+						perror("./simple_shell");
+    					}
+				}
+				else if (pid == -1)
+				{
+					running = 0;
+				}
+				else
+				{
+					wait(&status);
+					if (!(WIFEXITED(status) && (WEXITSTATUS(status) == 0)))
+					{
+						running = 0;
+					}
+				}
+			}
 		}
 	}
 	free(buffer);
+	if (running == 0)
+	{
+		return (-1);
+	}
 	return (0);
 }
