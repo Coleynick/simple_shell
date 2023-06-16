@@ -7,29 +7,42 @@
 int path(char **av)
 {
 	struct stat st;
-	char *s = getenv("PATH");
-	char filepath[265];
-	char *dir = strtok(s, ":");
+	char *s = getenv("PATH"), filepath[265];
+	char *dir = strtok(s, ":"), *paths[20];
+	int num = 0;
+	static int first = 1;
 
-	while (dir != NULL)
+	if (first == 1)
 	{
-		strcpy(filepath, dir);
-		if (strncmp(filepath, *(av), strlen(filepath)) == 0)
+		while (dir != NULL)
+		{
+			paths[num] = dir;
+			num++;
+			dir = strtok(NULL, ":");
+		}
+		paths[num] = NULL;
+		first = 2;
+	}
+	num = 0;
+	while (paths[num] != NULL)
+	{
+		strcpy(filepath, paths[num]);
+		if (strncmp(filepath, (*av), strlen(filepath)) == 0)
 		{
 			if (stat((*av), &st) == 0)
 				return (1);
 		}
-	else
-	{
-		strcat(filepath, "/");
-		strcat(filepath, (*av));
-		if (stat(filepath, &st) == 0)
+		else
 		{
-			(*av) = strdup(filepath);
-			return (1);
+			strcat(filepath, "/");
+			strcat(filepath, (*av));
+			if (access(filepath, F_OK) == 0)
+			{
+				(*av) = strdup(filepath);
+				return (1);
+			}
 		}
-	}
-	dir = strtok(NULL, ":");
+		num++;
 	}
 	return (0);
 }
