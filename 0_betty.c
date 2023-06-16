@@ -7,6 +7,7 @@
 int main(void)
 {
 	char c[5] = {'C', 'h', 'i', 'n', 'a'};
+	int x;
 
 	for (x = 0; x < 5; x++)
 	{
