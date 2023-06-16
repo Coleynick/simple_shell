@@ -21,5 +21,7 @@ int input_handle(char **buffer, char *av[])
 	av[1] = NULL;
 	if (read == 1)
 		return (1);
+	if (!isatty(STDIN_FILENO))
+		return (2);
 	return (0);
 }

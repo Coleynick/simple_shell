@@ -6,17 +6,17 @@
  */
 int main(void)
 {
-	char *buffer = NULL;
-	char *av[2];
+	char *buffer = NULL, *av[2];
 	pid_t pid;
-	int status, running = 1;
+	int status, running = 1, input;
 
 	while (running)
 	{
 		printf("$ ");
-		if (input_handle(&buffer, av) == -1)
+		input = input_handle(&buffer, av);
+		if (input == -1 || input == 2)
 			running = 0;
-		else
+		if (input != -1)
 		{
 			if (buffer[0] == '\0')
 				continue;

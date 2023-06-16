@@ -7,14 +7,15 @@ int main(void)
 {
 char *av[20], *arg_s, *buffer = NULL;
 pid_t pid;
-int status, num = 0, running = 1;
+int status, num = 0, running = 1, input;
 
 while (running)
 {
 	printf("#cisfun$ ");
-	if (input_handle(&buffer, av) == -1)
+	input = input_handle(&buffer, av);
+	if (input == -1 || input == 2)
 		running = 0;
-	else
+	if (input != -1)
 	{
 		if (buffer[0] == '\0')
 			continue;
