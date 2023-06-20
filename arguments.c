@@ -8,16 +8,17 @@
  */
 int arguments(char **buffer, char **av)
 {
-	int num = 0;
+	int num = 0, i;
 	int found;
-	char *arg_s;
+	char *args_s;
 
-	arg_s = strtok((*buffer), " ");
-	while (arg_s != NULL)
+	num = tokenize(*buffer, ' ');
+
+	args_s = *buffer;
+	for (i = 0; i < num; i++)
 	{
-		av[num] = arg_s;
-		arg_s = strtok(NULL, " ");
-		num++;
+		av[i] = args_s;
+		args_s += strlen(args_s) + 1;
 	}
 	av[num] = NULL;
 	found = path(&av[0]);

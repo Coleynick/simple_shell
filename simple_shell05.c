@@ -27,6 +27,20 @@ void exe_not_found(char **av, char **buffer, char *hsh)
 
 }
 /**
+* check_enter - Entry point
+* @buffer: buffer
+* Return: 1 on success
+*/
+int check_enter(char **buffer)
+{
+	if (*buffer[0] == '\0')
+	{
+		free(*buffer);
+		return (1);
+	}
+	return (0);
+}
+/**
 * main - Entry point
 * @argc: num of args
 * @argv: argis
@@ -46,7 +60,7 @@ while (running)
 	check_in(input, &running);
 	if (input != -1)
 	{
-		if (buffer[0] == '\0')
+		if (check_enter(&buffer))
 			continue;
 		if (strcmp(buffer, "env") == 0)
 		{

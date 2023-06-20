@@ -10,7 +10,8 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 extern char** environ;
-int input_handle(char **buffer, char *av[2]);
+int tokenize(char *s, char c);
+int input_handle(char **buffer, char **av);
 int path(char **av);
 int arguments(char **buffer, char **av);
 int _fork(char **av);

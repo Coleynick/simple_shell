@@ -13,7 +13,6 @@ void set_paths(char **paths, const int num, char *dir)
 	{
 		paths[i] = strdup(dir);
 		dir += strlen(dir) + 1;
-		dir += strspn(dir, ":");
 	}
 	paths[i] = NULL;
 }
@@ -22,6 +21,7 @@ void set_paths(char **paths, const int num, char *dir)
  * @paths: the array
  * @num: number of tokens
  * @return_val: return value
+ * Return: return value
  */
 int free_paths(char **paths, int num, int return_val)
 {
@@ -41,23 +41,14 @@ int free_paths(char **paths, int num, int return_val)
 int path(char **av)
 {
 	struct stat st;
-	char *s = getenv("PATH"), filepath[256];
-	char **paths = malloc(20 * sizeof(char *)), *dir = strtok(s, ":");
-	int i;
-	static int first = 1, num = 1;
+	char *p = getenv("PATH"), filepath[256];
+	char **paths = malloc(20 * sizeof(char *)), *dir;
+	int i, num = 1;
 
-	if (first == 1)
-	{
-		num--;
-		while (dir != NULL)
-		{
-			num++;
-			dir = strtok(NULL, ":");
-		}
-		first = 2;
-	}
-	dir = s;
+	dir = strdup(p);
+	num = tokenize(dir, ':');
 	set_paths(paths, num, dir);
+	free(dir);
 	for (i = 0; i < num; i++)
 	{
 		strcpy(filepath, paths[i]);
