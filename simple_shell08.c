@@ -6,9 +6,15 @@
 */
 int tokenArg(char *buffer, char **av)
 {
-	char *arg_s = strtok(buffer, " ");
+	char *arg_s;
 	int num = 0;
 
+	if (buffer == NULL || *buffer == '\0')
+	{
+		av[num] = NULL;
+		return (num);
+	}
+	arg_s = strtok(buffer, " ");
 	while (arg_s != NULL)
 	{
 		av[num] = arg_s;
@@ -25,7 +31,7 @@ int tokenArg(char *buffer, char **av)
 */
 int main(void)
 {
-	char *av[20], *buffer = NULL;
+	char *av[20], *intCheck, *buffer = NULL;
 	int num = 0, running = 1;
 	int exit_status;
 
@@ -41,14 +47,21 @@ int main(void)
 			if (strncmp(buffer, "exit", 4) == 0)
 			{
 				num = tokenArg(buffer, av);
-				if (num >= 2)
+				if (num == 1)
 				{
-					exit_status = atoi(av[1]);
+					exit(0);
+				}
+				else if (num == 2)
+				{
+					exit_status = (int)strtol(av[1], &intCheck, 10);
+					if (*intCheck == '\0')
 					exit(exit_status);
+					else
+						printf("Invalid exit status\n");
 				}
 				else
 				{
-					exit(0);
+					printf("Error: More than two arguments\n");
 				}
 			}
 			else
