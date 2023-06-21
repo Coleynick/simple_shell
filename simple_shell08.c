@@ -4,7 +4,7 @@
 * @buffer: input buffer
 * @av: arguments
 */
-void tokenArg(char *buffer, char **av)
+int tokenArg(char *buffer, char **av)
 {
 	char *arg_s = strtok(buffer, " ");
 	int num = 0;
@@ -16,6 +16,8 @@ void tokenArg(char *buffer, char **av)
 		num++;
 	}
 	av[num] = NULL;
+
+	return (num);
 }
 /**
 * main - Starting point
@@ -36,9 +38,9 @@ int main(void)
 		{
 			if (buffer[0] == '\0')
 				continue;
-			if (strcmp(buffer, "exit") == 0)
+			if (strncmp(buffer, "exit", 4) == 0)
 			{
-				tokenArg(buffer, av);
+				num = tokenArg(buffer, av);
 				if (num >= 2)
 				{
 					exit_status = atoi(av[1]);
