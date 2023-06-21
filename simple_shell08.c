@@ -3,7 +3,7 @@
 * tokenArg - Tokenizes the buffer into arguments
 * @buffer: input buffer
 * @av: arguments
-* return: Num
+* Return: Num
 */
 int tokenArg(char *buffer, char **av)
 {
