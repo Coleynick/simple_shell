@@ -3,6 +3,7 @@
 * tokenArg - Tokenizes the buffer into arguments
 * @buffer: input buffer
 * @av: arguments
+* return: Num
 */
 int tokenArg(char *buffer, char **av)
 {
@@ -31,9 +32,8 @@ int tokenArg(char *buffer, char **av)
 */
 int main(void)
 {
-	char *av[20], *intCheck, *buffer = NULL;
-	int num = 0, running = 1;
-	int exit_status;
+	char *av[20], *buffer = NULL;
+	int running = 1;
 
 	while (running)
 	{
@@ -44,31 +44,11 @@ int main(void)
 		{
 			if (buffer[0] == '\0')
 				continue;
-			if (strncmp(buffer, "exit", 4) == 0)
-			{
-				num = tokenArg(buffer, av);
-				if (num == 1)
-				{
-					exit(0);
-				}
-				else if (num == 2)
-				{
-					exit_status = (int)strtol(av[1], &intCheck, 10);
-					if (*intCheck == '\0')
-					exit(exit_status);
-					else
-						printf("Invalid exit status\n");
-				}
-				else
-				{
-					printf("Error: More than two arguments\n");
-				}
-			}
-			else
-			{
-				tokenArg(buffer, av);
-				running = _fork(av);
-			}
+			exitStatus(buffer, av);
+		}
+		if (running)
+		{
+			tokenArg(buffer, av);
 		}
 	}
 
