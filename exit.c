@@ -7,21 +7,26 @@
 */
 void exitStatus(char *buffer, char **av)
 {
-	int num = 0, exit_status;
+	int num = 0, exit_status, i;
 	char *intCheck;
 
 	if (strncmp(buffer, "exit", 4) == 0)
 	{
-		num = tokenArg(buffer, av);
+		for (i = 0; av[i] != NULL; i++)
+			num++;
 		if (num == 1)
 		{
+			free(buffer);
 			exit(0);
 		}
 		else if (num == 2)
 		{
 			exit_status = (int)strtol(av[1], &intCheck, 10);
 			if (*intCheck == '\0')
+			{
+				free(buffer);
 				exit(exit_status);
+			}
 			else
 				printf("Invalid exit status\n");
 		}
