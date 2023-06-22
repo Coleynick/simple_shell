@@ -11,6 +11,7 @@
 #include <sys/stat.h>
 extern char** environ;
 int tokenize(char *s, char c);
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 int input_handle(char **buffer, char **av);
 int path(char **av);
 int arguments(char **buffer, char **av);

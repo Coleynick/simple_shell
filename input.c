@@ -11,7 +11,7 @@ int input_handle(char **buffer, char *av[])
 	size_t len = 0;
 	ssize_t read;
 
-	read = getline(buffer, &len, stdin);
+	read = _getline(buffer, &len, stdin);
 	if (read == -1 || (*buffer)[read - 1] != 10)
 	{
 		return (-1);
@@ -22,6 +22,8 @@ int input_handle(char **buffer, char *av[])
 	if (read == 1)
 		return (1);
 	if (!isatty(STDIN_FILENO))
+	{
 		return (2);
+	}
 	return (0);
 }
