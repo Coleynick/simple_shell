@@ -14,6 +14,6 @@ int tokenize(char *s, char c);
 int input_handle(char **buffer, char **av);
 int path(char **av);
 int arguments(char **buffer, char **av);
-int _fork(char **av);
+int _fork(char **av, char *shell, char *p);
 void _env(void);
 #endif
