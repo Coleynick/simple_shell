@@ -10,6 +10,7 @@ int input_handle(char **buffer, char *av[])
 {
 	size_t len = 0;
 	ssize_t read;
+	char *endCommand;
 
 	read = getline(buffer, &len, stdin);
 	if (read == -1 || (*buffer)[read - 1] != 10)
@@ -17,6 +18,11 @@ int input_handle(char **buffer, char *av[])
 		return (-1);
 	}
 	(*buffer)[read - 1] = '\0';
+	endCommand = strchr(*buffer, '#');
+	if (endCommand != NULL)
+	{
+		*endCommand = '\0';
+	}
 	av[0] = (*buffer);
 	av[1] = NULL;
 	if (read == 1)
