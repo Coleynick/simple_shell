@@ -91,6 +91,8 @@ do {
 			continue;
 		}
 		num = arguments(&buffer, av);
+		if (_setenv(&buffer, av, argv[0]) || _unsetenv(&buffer, av, argv[0]))
+			continue;
 		exitStatus(buffer, av);
 		if (!num)
 			exe_not_found(av, &buffer, argv[0]);
