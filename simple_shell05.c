@@ -3,12 +3,16 @@
 * check_in - Entry point
 * @input: input
 * @running: running
+* @buffer: buffer
 * Return: 0 on success
 */
-void check_in(int input, int *running)
+void check_in(int input, int *running, char **buffer)
 {
 	if (input == -1)
+	{
 		*running = 0;
+		free(*buffer);
+	}
 	else if (input == 2)
 		*running = 1;
 }
@@ -71,12 +75,11 @@ char *av[20] = {NULL}, *buffer = NULL, *p;
 int num = 0, running = 1, input = 0;
 
 (void) argc;
-while (running)
-{
-	if (input != 2)
+do {
+	if (isatty(STDIN_FILENO))
 		printf("#cisfun$ ");
 	input = input_handle(&buffer, av);
-	check_in(input, &running);
+	check_in(input, &running, &buffer);
 	if (input != -1)
 	{
 		if (check_enter(&buffer))
@@ -98,12 +101,11 @@ while (running)
 			free(buffer);
 			if (num == 2)
 				free(av[0]);
-			check_in(input, &running);
+			check_in(input, &running, &buffer);
 		}
 	}
-}
-free(buffer);
-if (input == 2)
+} while (running);
+if (!isatty(STDIN_FILENO))
 	printf("#cisfun$ ");
 return (running ? 0 : -1);
 }
