@@ -17,7 +17,7 @@ int path(char **av);
 int arguments(char **buffer, char **av);
 int _fork(char **av, char *shell, char *p);
 void _env(void);
-void echoCommand(char *buffer, char **av);
+void variables(char **tokens, int exit_status);
 int input(char **buffer, char *av[]);
 void exitStatus(char *buffer, char **av);
 int tokenArg(char *buffer, char **av);
