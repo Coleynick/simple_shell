@@ -100,7 +100,11 @@ do {
 		num = arguments(&buffer, av);
 		if (_setenv(&buffer, av, argv[0]) || _unsetenv(&buffer, av, argv[0]))
 			continue;
-		exitStatus(buffer, av);
+		if (strncmp(buffer, "exit", 4) == 0)
+		{
+			exitStatus(buffer, av);
+			continue;
+		}
 		if (!num && lines)
 			_printf("%s: %d: %s: not found\n", argv[0], lines, av[0]);
 		else if (!num)

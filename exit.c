@@ -19,7 +19,7 @@ void exitStatus(char *buffer, char **av)
 			free(buffer);
 			exit(0);
 		}
-		else if (num == 2)
+		else
 		{
 			exit_status = (int)strtol(av[1], &intCheck, 10);
 			if (*intCheck == '\0')
@@ -29,11 +29,10 @@ void exitStatus(char *buffer, char **av)
 				exit(exit_status);
 			}
 			else
-				_printf("Invalid exit status\n");
-		}
-		else
-		{
-			_printf("Error: More than two arguments\n");
+			{
+				_printf("./hsh: exit: Illegal number: %s\n", av[1]);
+				free(buffer);
+			}
 		}
 	}
 }

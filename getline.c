@@ -1,5 +1,17 @@
 #include "main.h"
 /**
+ * exit_helper - Entry point
+ * Description: print env vars
+ * @buff: line buffer
+ * Return: none
+ */
+void exit_helper(char **buff)
+{
+	free(*buff);
+	exit(EXIT_FAILURE);
+}
+
+/**
  * _getline - Entry point
  * Description: print env vars
  * @lineptr: line buffer
@@ -15,11 +27,11 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 
 	(void) stream;
 	if (lineptr == NULL || n == NULL || stream == NULL)
-		return (-1);
+		exit(EXIT_FAILURE);
 	*n = 1024;
 	*lineptr = malloc(*n);
 	if (*lineptr == NULL)
-		return (-1);
+		exit(EXIT_FAILURE);
 	fflush(stdout);
 	(*lineptr)[0] = '\0';
 	for (i = 0; ; i++)
@@ -29,7 +41,7 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 			*n *= 2;
 			*lineptr = realloc(*lineptr, *n);
 			if (*lineptr == NULL)
-				return (-1);
+				exit_helper(lineptr);
 		}
 		r = read(STDIN_FILENO, &c, 1);
 		if (r == 0 && i == 0)
@@ -47,5 +59,6 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 		(*lineptr)[i] = c;
 		(*lineptr)[i + 1] = '\0';
 	}
-	return (-1);
+	free(*lineptr);
+	exit(EXIT_FAILURE);
 }
