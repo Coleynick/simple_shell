@@ -7,7 +7,7 @@
  * @shell: argv[0]
  * Return: int
  */
-int _fork(char **av, char *shell, char *p)
+int _fork(char **av, char *shell, char *p, int *exit_status)
 {
 	pid_t pid;
 	int r = 1;
@@ -22,11 +22,16 @@ int _fork(char **av, char *shell, char *p)
 	else if (pid == -1)
 		return (0);
 	wait(&status);
-	if (!(WIFEXITED(status) && (WEXITSTATUS(status) == 0)))
-		r = 0;
-	if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
+	if (WIFEXITED(status))
+	{
+		*exit_status = WEXITSTATUS(status);
+		if (*exit_status != 0)
 		r = 1;
-
+	}
+	else
+	{
+		r = 0;
+	}
 	if (strcmp(p, av[0]))
 		free(p);
 	return (r);

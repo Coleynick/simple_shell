@@ -4,7 +4,7 @@
  * @tokens: Token array
  * @exit_status: Value of exit status
  */
-void variables(char **tokens, int exit_status)
+void variables(char **tokens, int *exit_status)
 {
 	int i;
 
@@ -14,7 +14,7 @@ void variables(char **tokens, int exit_status)
 		{
 			free(tokens[i]);
 			tokens[i] = malloc(12);
-			snprintf(tokens[i], 12, "%d", exit_status);
+			snprintf(tokens[i], 12, "%d", *exit_status);
 		}
 		else if (strcmp(tokens[i], "$$") == 0)
 		{
