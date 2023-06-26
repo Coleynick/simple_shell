@@ -32,19 +32,5 @@ int input_handle(char **buffer, char *av[])
 	{
 		return (2);
 	}
-<<<<<<< HEAD
-	tokens = toks(*buffer, ' ');
-	if (strcmp(tokens[0], "echo") == 0)
-	{
-		variables(tokens, exit_status);
-		for (i = 1; tokens[i] != NULL; i++)
-		{
-			_printf("%s", tokens[i]);
-		}
-		_printf("\n");
-	}
-	freeToks(tokens);
-=======
->>>>>>> 6641ec2d1ee6d9acb54e446ed2b96cf14421a700
 	return (0);
 }
