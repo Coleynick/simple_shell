@@ -19,12 +19,16 @@ int main(void)
 		if (input != -1)
 		{
 			if (buffer[0] == '\0')
+			{
+				free(buffer);
 				continue;
+			}
 			pid = fork();
 			if (pid == 0)
 			{
 				if (execve(av[0], av, environ) == -1)
-					perror("./simple_shell");
+					perror("./hsh");
+				free(buffer);
 			}
 			else if (pid == -1)
 				running = 0;
@@ -32,7 +36,9 @@ int main(void)
 			{
 				wait(&status);
 				if (!(WIFEXITED(status) && (WEXITSTATUS(status) == 0)))
+				{
 					running = 0;
+				}
 			}
 		}
 	}
