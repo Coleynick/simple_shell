@@ -100,7 +100,7 @@ do {
 		num = arguments(&buffer, av);
 		if (_setenv(&buffer, av, argv[0]) || _unsetenv(&buffer, av, argv[0]))
 			continue;
-		if (strncmp(buffer, "exit", 4) == 0)
+		if (strncmp(av[0], "exit", 4) == 0)
 		{
 			exitStatus(buffer, av);
 			continue;
