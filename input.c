@@ -1,42 +1,4 @@
 #include "main.h"
-/**
-* toks - Tokenize a string using a delimiter as base
-* @buffer: String to tokenize
-* @delimiter: Delimiter character
-* Return: An array of tokens
-*/
-char **toks(char *buffer, char delimiter)
-{
-	char *token = strtok(buffer, &delimiter);
-	char **toks = NULL;
-	size_t count = 0;
-
-	while (token != NULL)
-	{
-		toks = realloc(toks, (count + 1) * sizeof(char *));
-		toks[count] = strdup(token);
-		count++;
-		token = strtok(NULL, &delimiter);
-	}
-	toks = realloc(toks, (count + 1) * sizeof(char *));
-	toks[count] = NULL;
-	return (toks);
-}
-
-/**
-* freeToks - Free memory allocated for toks
-* @toks: Tokens array to free
-*/
-void freeToks(char **toks)
-{
-	int i;
-
-	for (i = 0; toks[i] != NULL; i++)
-	{
-		free(toks[i]);
-	}
-	free(toks);
-}
 
 /**
 * input_handle - Entry point
@@ -49,8 +11,7 @@ int input_handle(char **buffer, char *av[])
 {
 	size_t len = 0;
 	ssize_t read;
-	char *endCommand, **tokens;
-	int i, exit_status = 0;
+	char *endCommand;
 
 	read = _getline(buffer, &len, stdin);
 	if (read == -1 || (*buffer)[read - 1] != 10)
@@ -71,6 +32,7 @@ int input_handle(char **buffer, char *av[])
 	{
 		return (2);
 	}
+<<<<<<< HEAD
 	tokens = toks(*buffer, ' ');
 	if (strcmp(tokens[0], "echo") == 0)
 	{
@@ -82,5 +44,7 @@ int input_handle(char **buffer, char *av[])
 		_printf("\n");
 	}
 	freeToks(tokens);
+=======
+>>>>>>> 6641ec2d1ee6d9acb54e446ed2b96cf14421a700
 	return (0);
 }
