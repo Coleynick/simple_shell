@@ -63,6 +63,9 @@ char *prepare_arguments(char **buffer, char **av, char *p)
 		p = av[0];
 	return (p);
 }
+
+int _setenv(char **buffer, char **av, char *shell);
+int _unsetenv(char **buffer, char **av, char *shell);
 /**
 * main - Entry point
 * @argc: num of args
