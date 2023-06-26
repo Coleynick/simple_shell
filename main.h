@@ -17,6 +17,8 @@ int path(char **av);
 int arguments(char **buffer, char **av);
 int _fork(char **av, char *shell, char *p);
 void _env(void);
+int _setenv(char **buffer, char **av, char *shell);
+int _unsetenv(char **buffer, char **av, char *shell);
 void exitStatus(char *buffer, char **av);
 int tokenArg(char *buffer, char **av);
 #endif
