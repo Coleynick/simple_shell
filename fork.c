@@ -5,6 +5,7 @@
  * @av: arguments
  * @p: path
  * @shell: argv[0]
+ * @exit_status: Value of exit status
  * Return: int
  */
 int _fork(char **av, char *shell, char *p, int *exit_status)
