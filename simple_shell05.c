@@ -75,16 +75,13 @@ int _unsetenv(char **buffer, char **av, char *shell);
 */
 int main(int argc, char **argv)
 {
-char *av[20] = {NULL}, *buffer, *p;
+char *av[20] = {NULL}, *p;
 int num = 0, running = 1, input = 0, lines = 0;
 
+buffer = NULL;
 signal(SIGINT, sigint_handler);
 (void) argc;
 do {
-	if (signaled == 1)
-	{
-		exit(0);
-	}
 	if (isatty(STDIN_FILENO))
 		_printf("#cisfun$ ");
 	else

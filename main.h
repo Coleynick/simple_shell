@@ -11,7 +11,7 @@
 #include <sys/stat.h>
 #include <stdarg.h>
 extern char **environ;
-int signaled;
+char *buffer;
 void sigint_handler(int sig);
 int _printf(const char *format, ...);
 int _putchar(char c);

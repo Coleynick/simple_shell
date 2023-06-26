@@ -7,5 +7,6 @@
  */
 void sigint_handler(int sig){
 	(void) sig;
-	signaled = 1;
+	free(buffer);
+	exit(0);
 }
