@@ -89,7 +89,7 @@ do {
 	check_in(input, &running, &buffer);
 	if (input != -1)
 	{
-		if (check_enter(&buffer))
+		if (check_enter(&buffer) || check_empty())
 			continue;
 		if (strcmp(buffer, "env") == 0)
 		{
@@ -116,5 +116,7 @@ do {
 		}
 	}
 } while (running);
+if (!isatty(STDIN_FILENO))
+	return (0);
 return (running ? 0 : -1);
 }

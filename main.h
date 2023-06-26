@@ -12,6 +12,7 @@
 #include <stdarg.h>
 extern char **environ;
 char *buffer;
+int check_empty(void);
 void sigint_handler(int sig);
 int _printf(const char *format, ...);
 int _putchar(char c);
