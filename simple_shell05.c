@@ -116,7 +116,5 @@ do {
 		}
 	}
 } while (running);
-if (!isatty(STDIN_FILENO))
-	return (0);
-return (running ? 0 : -1);
+return (0);
 }
