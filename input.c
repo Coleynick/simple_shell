@@ -77,9 +77,9 @@ int input_handle(char **buffer, char *av[])
 		variables(tokens, exit_status);
 		for (i = 1; tokens[i] != NULL; i++)
 		{
-			printf("%s", tokens[i]);
+			_printf("%s", tokens[i]);
 		}
-		printf("\n");
+		_printf("\n");
 	}
 	freeToks(tokens);
 	return (0);

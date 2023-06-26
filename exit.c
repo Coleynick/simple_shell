@@ -29,11 +29,11 @@ void exitStatus(char *buffer, char **av)
 				exit(exit_status);
 			}
 			else
-				printf("Invalid exit status\n");
+				_printf("Invalid exit status\n");
 		}
 		else
 		{
-			printf("Error: More than two arguments\n");
+			_printf("Error: More than two arguments\n");
 		}
 	}
 }

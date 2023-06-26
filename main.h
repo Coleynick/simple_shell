@@ -9,7 +9,12 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
+#include <stdarg.h>
 extern char **environ;
+int _printf(const char *format, ...);
+int _putchar(char c);
+int print_strings(char *s);
+int print_number(int n);
 int tokenize(char *s, char c);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 int input_handle(char **buffer, char **av);

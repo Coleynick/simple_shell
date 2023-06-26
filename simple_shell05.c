@@ -81,7 +81,7 @@ int num = 0, running = 1, input = 0, lines = 0;
 (void) argc;
 do {
 	if (isatty(STDIN_FILENO))
-		printf("#cisfun$ ");
+		_printf("#cisfun$ ");
 	else
 		lines++;
 	input = input_handle(&buffer, av);
@@ -101,7 +101,7 @@ do {
 			continue;
 		exitStatus(buffer, av);
 		if (!num && lines)
-			printf("%s: %d: %s: not found\n", argv[0], lines, av[0]);
+			_printf("%s: %d: %s: not found\n", argv[0], lines, av[0]);
 		else if (!num)
 			exe_not_found(av, &buffer, argv[0]);
 		else
