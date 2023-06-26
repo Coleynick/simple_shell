@@ -1,14 +1,14 @@
 #include "main.h"
 /**
  * variables - Substitute tokens with values
- * @token: Token array
+ * @tokens: Token array
  * @exit_status: Value of exit status
  */
 void variables(char **tokens, int exit_status)
 {
 	int i;
 
-	for (i =0; tokens[i] != NULL; i++)
+	for (i = 0; tokens[i] != NULL; i++)
 	{
 		if (strcmp(tokens[i], "$?") == 0)
 		{
