@@ -110,7 +110,5 @@ do {
 		}
 	}
 } while (running);
-if (!isatty(STDIN_FILENO))
-	printf("#cisfun$ ");
 return (running ? 0 : -1);
 }
