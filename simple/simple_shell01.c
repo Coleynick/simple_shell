@@ -16,6 +16,8 @@ int main(void)
 		input = input_handle(&buffer, av);
 		if (input == -1 || input == 2)
 			running = 0;
+		if (input == -1)
+			printf("\n");
 		if (input != -1)
 		{
 			if (buffer[0] == '\0')
@@ -42,7 +44,6 @@ int main(void)
 			}
 		}
 	}
-	free(buffer);
 	if (running == 0)
 		return (-1);
 	return (0);
