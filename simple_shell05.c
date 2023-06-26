@@ -98,7 +98,7 @@ do {
 			continue;
 		exitStatus(buffer, av);
 		if (!num)
-			exe_not_found(av, &buffer, argv[0]);
+			printf("%s: %s: command not found\n", argv[0], av[0]);
 		else
 		{
 			p = prepare_arguments(&buffer, av, p);
