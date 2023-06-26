@@ -12,7 +12,6 @@ void check_in(int input, int *running, char **buffer)
 	{
 		*running = 0;
 		free(*buffer);
-		printf("\n");
 	}
 	else if (input == 2)
 		*running = 1;
