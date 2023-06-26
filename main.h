@@ -9,7 +9,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
-extern char** environ;
+extern char **environ;
 int tokenize(char *s, char c);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 int input_handle(char **buffer, char **av);
