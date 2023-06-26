@@ -7,7 +7,7 @@
 */
 void exitStatus(char *buffer, char **av)
 {
-	int num = 0, exit_status, i;
+	int num = 0, exit_status = 0, i;
 	char *intCheck;
 
 	if (strncmp(buffer, "exit", 4) == 0)
@@ -24,6 +24,7 @@ void exitStatus(char *buffer, char **av)
 			exit_status = (int)strtol(av[1], &intCheck, 10);
 			if (*intCheck == '\0')
 			{
+				exit_status = atoi(av[1]);
 				free(buffer);
 				exit(exit_status);
 			}

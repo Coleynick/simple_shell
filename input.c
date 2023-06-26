@@ -1,40 +1,41 @@
 #include "main.h"
 /**
- * toks - Tokenize a string using a delimiter as base
- * @buffer: String to tokenize
- * @delimiter: Delimiter character
- * Return: An array of tokens
- */
+* toks - Tokenize a string using a delimiter as base
+* @buffer: String to tokenize
+* @delimiter: Delimiter character
+* Return: An array of tokens
+*/
 char **toks(char *buffer, char delimiter)
 {
-    char *token = strtok(buffer, &delimiter);
-    char **toks = NULL;
-    size_t count = 0;
+	char *token = strtok(buffer, &delimiter);
+	char **toks = NULL;
+	size_t count = 0;
 
-    while (token != NULL) {
-        toks = realloc(toks, (count + 1) * sizeof(char *));
-        toks[count] = strdup(token);
-        count++;
-        token = strtok(NULL, &delimiter);
-    }
-
-    toks = realloc(toks, (count + 1) * sizeof(char *));
-    toks[count] = NULL;
-
-    return (toks);
+	while (token != NULL)
+	{
+		toks = realloc(toks, (count + 1) * sizeof(char *));
+		toks[count] = strdup(token);
+		count++;
+		token = strtok(NULL, &delimiter);
+	}
+	toks = realloc(toks, (count + 1) * sizeof(char *));
+	toks[count] = NULL;
+	return (toks);
 }
 
 /**
- * freeToks - Free memory allocated for toks
- * @toks: Tokens array to free
- */
+* freeToks - Free memory allocated for toks
+* @toks: Tokens array to free
+*/
 void freeToks(char **toks)
 {
-    int i;
-    for (i = 0; toks[i] != NULL; i++) {
-        free(toks[i]);
-    }
-    free(toks);
+	int i;
+
+	for (i = 0; toks[i] != NULL; i++)
+	{
+		free(toks[i]);
+	}
+	free(toks);
 }
 
 /**
