@@ -75,12 +75,14 @@ int _unsetenv(char **buffer, char **av, char *shell);
 int main(int argc, char **argv)
 {
 char *av[20] = {NULL}, *buffer = NULL, *p;
-int num = 0, running = 1, input = 0;
+int num = 0, running = 1, input = 0, lines = 0;
 
 (void) argc;
 do {
 	if (isatty(STDIN_FILENO))
 		printf("#cisfun$ ");
+	else
+		lines++;
 	input = input_handle(&buffer, av);
 	check_in(input, &running, &buffer);
 	if (input != -1)
@@ -97,8 +99,10 @@ do {
 		if (_setenv(&buffer, av, argv[0]) || _unsetenv(&buffer, av, argv[0]))
 			continue;
 		exitStatus(buffer, av);
-		if (!num)
-			printf("%s: %s: command not found\n", argv[0], av[0]);
+		if (!num && lines)
+			printf("%s: %d: %s: not found\n", argv[0], lines, av[0]);
+		else if (!num)
+			exe_not_found(av, &buffer, argv[0]);
 		else
 		{
 			p = prepare_arguments(&buffer, av, p);
