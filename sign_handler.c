@@ -5,7 +5,8 @@
  * @sig: signal
  * Return: nothing
  */
-void sigint_handler(int sig){
+void sigint_handler(int sig)
+{
 	(void) sig;
 	free(buffer);
 	exit(0);
