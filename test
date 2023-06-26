@@ -1,0 +1,5 @@
+ls
+/bin/ls
+echo hi
+ls -a
+ls -a
