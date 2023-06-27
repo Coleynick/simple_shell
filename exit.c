@@ -17,7 +17,7 @@ void exitStatus(char *buffer, char **av)
 		if (num == 1)
 		{
 			free(buffer);
-			exit(exit_status);
+			exit(0);
 		}
 		else
 		{
@@ -32,6 +32,7 @@ void exitStatus(char *buffer, char **av)
 			{
 				_printf("./hsh: exit: Illegal number: %s\n", av[1]);
 				free(buffer);
+				exit(2);
 			}
 		}
 	}
