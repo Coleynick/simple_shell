@@ -28,6 +28,6 @@ int _fork(char **av, char *shell, char *p, int *exit_status);
 void _env(void);
 void variables(char **tokens, int *exit_status);
 int input(char **buffer, char *av[]);
-void exitStatus(char *buffer, char **av);
+void exitStatus(char *buffer, char **av, int lines);
 int tokenArg(char *buffer, char **av);
 #endif

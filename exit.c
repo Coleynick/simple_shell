@@ -3,9 +3,10 @@
 * exitStatus - Checks the exit status
 * @buffer: input buffer
 * @av: arguments
+* @lines: line number
 * return: Nothing
 */
-void exitStatus(char *buffer, char **av)
+void exitStatus(char *buffer, char **av, int lines)
 {
 	int num = 0, i;
 	char *intCheck;
@@ -30,7 +31,7 @@ void exitStatus(char *buffer, char **av)
 			}
 			else
 			{
-				fprintf(stderr, "./hsh: exit: Illegal number: %s\n", av[1]);
+				fprintf(stderr, "./hsh: %d: exit: Illegal number: %s\n", lines, av[1]);
 				free(buffer);
 				exit_status = 2;
 			}

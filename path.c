@@ -45,16 +45,14 @@ int path(char **av)
 	char **paths = malloc(20 * sizeof(char *)), *dir;
 	int i, num = 1;
 
+	if (stat((*av), &st) == 0)
+		return (1);
+	if (p == NULL)
+		return (0);
 	dir = strdup(p);
 	num = tokenize(dir, ':');
 	set_paths(paths, num, dir);
 	free(dir);
-	if (stat((*av), &st) == 0)
-	{
-		return (free_paths(paths, num, 1));
-	}
-	if (p == NULL)
-		return (0);
 	for (i = 0; i < num; i++)
 	{
 		strcpy(filepath, paths[i]);
