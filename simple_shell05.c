@@ -128,5 +128,5 @@ do {
 		}
 	}
 } while (running);
-return (0);
+return (exit_status);
 }
