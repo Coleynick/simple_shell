@@ -49,6 +49,8 @@ int path(char **av)
 	num = tokenize(dir, ':');
 	set_paths(paths, num, dir);
 	free(dir);
+	if (stat((*av), &st) == 0)
+		return (free_paths(paths, num, 1));
 	for (i = 0; i < num; i++)
 	{
 		strcpy(filepath, paths[i]);
