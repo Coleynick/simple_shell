@@ -115,7 +115,7 @@ do {
 		}
 		else if (!num)
 		{
-			printf("./hsh: %d: %s: not found\n", lines, av[0]);
+			fprintf(stderr, "./hsh: %d: %s: not found\n", lines, av[0]);
 			free(buffer);
 			exit_status = 127;
 		}
