@@ -90,7 +90,9 @@ do {
 	if (input != -1)
 	{
 		if (check_enter(&buffer) || check_empty())
+		{
 			continue;
+		}
 		if (strcmp(buffer, "env") == 0)
 		{
 			_env();
@@ -119,7 +121,10 @@ do {
 		}
 		else
 		{
-			p = prepare_arguments(&buffer, av, p);
+			if (num == 2)
+				p = prepare_arguments(&buffer, av, p);
+			else
+				p = av[0];
 			running = _fork(av, argv[0], p, &exit_status);
 			free(buffer);
 			if (num == 2)
