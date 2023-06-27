@@ -36,7 +36,7 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 	(*lineptr)[0] = '\0';
 	for (i = 0; ; i++)
 	{
-		if (strlen(*lineptr) == *n)
+		if (strlen(*lineptr) -1 == *n)
 		{
 			*n *= 2;
 			*lineptr = realloc(*lineptr, *n);
