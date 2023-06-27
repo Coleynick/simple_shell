@@ -17,7 +17,7 @@ void exitStatus(char *buffer, char **av)
 		if (num == 1)
 		{
 			free(buffer);
-			exit(130);
+			exit(0);
 		}
 		else
 		{
