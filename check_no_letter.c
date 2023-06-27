@@ -13,5 +13,6 @@ int check_empty(void)
 		if (buffer[i] != ' ')
 			return (0);
 	}
+	free(buffer);
 	return (1);
 }
