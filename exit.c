@@ -9,6 +9,7 @@ void exitStatus(char *buffer, char **av)
 {
 	int num = 0, i;
 	char *intCheck;
+	int exit_status;
 
 	if (strncmp(av[0], "exit", 4) == 0)
 	{
