@@ -97,6 +97,12 @@ do {
 			free(buffer);
 			continue;
 		}
+		if (strncmp("echo ", buffer, 5) == 0)
+		{
+			printf("%s\n", buffer + 5);
+			free(buffer);
+			continue;
+		}
 		num = arguments(&buffer, av);
 		if (_setenv(&buffer, av, argv[0]) || _unsetenv(&buffer, av, argv[0]))
 			continue;
@@ -115,12 +121,6 @@ do {
 		}
 		else
 		{
-			if (strncmp("echo", buffer, 4) == 0)
-			{
-				free(buffer);
-				free(av[0]);
-				continue;
-			}
 			p = prepare_arguments(&buffer, av, p);
 			running = _fork(av, argv[0], p, &exit_status);
 			free(buffer);
