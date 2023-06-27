@@ -117,6 +117,7 @@ do {
 			if (strncmp("echo", buffer, 4) == 0)
 			{
 				free(buffer);
+				free(av[0]);
 				continue;
 			}
 			p = prepare_arguments(&buffer, av, p);
