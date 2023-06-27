@@ -36,3 +36,4 @@ void exitStatus(char *buffer, char **av)
 		}
 	}
 }
+
