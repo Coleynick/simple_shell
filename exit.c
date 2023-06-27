@@ -30,7 +30,7 @@ void exitStatus(char *buffer, char **av)
 			}
 			else
 			{
-				_printf("./hsh: exit: Illegal number: %s\n", av[1]);
+				fprintf(stderr, "./hsh: exit: Illegal number: %s\n", av[1]);
 				free(buffer);
 			}
 		}
