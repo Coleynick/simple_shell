@@ -46,9 +46,9 @@ int path(char **av)
 	int i, num = 1;
 
 	if (stat((*av), &st) == 0)
-		return (1);
+		return (free_paths(paths, -1, 1));
 	if (p == NULL)
-		return (0);
+		return (free_paths(paths, -1, 0));
 	dir = strdup(p);
 	num = tokenize(dir, ':');
 	set_paths(paths, num, dir);
