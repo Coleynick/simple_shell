@@ -50,7 +50,11 @@ int path(char **av)
 	set_paths(paths, num, dir);
 	free(dir);
 	if (stat((*av), &st) == 0)
+	{
 		return (free_paths(paths, num, 1));
+	}
+	if (p == NULL)
+		return (0);
 	for (i = 0; i < num; i++)
 	{
 		strcpy(filepath, paths[i]);
