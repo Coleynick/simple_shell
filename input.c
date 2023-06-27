@@ -7,19 +7,19 @@
  */
 char **toks(char *buffer, char delimiter)
 {
-	char *token = strtok(buffer, &delimiter);
-	char **toks = NULL;
+	char *token, *cpyBuffer = strdup(buffer);
+	char **toks = NULL, *pbuffer = cpyBuffer;
 	size_t count = 0;
 
-	while (token != NULL)
+	while ((token = strsep(&pbuffer, &delimiter)) != NULL)
 	{
 		toks = realloc(toks, (count + 1) * sizeof(char *));
 		toks[count] = strdup(token);
 		count++;
-		token = strtok(NULL, &delimiter);
 	}
 	toks = realloc(toks, (count + 1) * sizeof(char *));
 	toks[count] = NULL;
+	free(cpyBuffer);
 	return (toks);
 }
 
