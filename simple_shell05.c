@@ -109,7 +109,8 @@ do {
 			_printf("%s: %d: %s: not found\n", argv[0], lines, av[0]);
 		else if (!num)
 		{
-			exe_not_found(av, &buffer, argv[0]);
+			printf("./hsh: %s: command not found\n", av[0]);
+			free(buffer);
 			exit_status = 127;
 		}
 		else
