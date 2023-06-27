@@ -23,7 +23,7 @@ void exitStatus(char *buffer, char **av, int lines)
 		else
 		{
 			exit_status = (int)strtol(av[1], &intCheck, 10);
-			if (*intCheck == '\0')
+			if (*intCheck == '\0' && atoi(av[1]) >= 0)
 			{
 				exit_status = atoi(av[1]);
 				free(buffer);
