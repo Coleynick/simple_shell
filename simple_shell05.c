@@ -110,7 +110,7 @@ do {
 			continue;
 		if (strncmp(av[0], "exit", 4) == 0)
 		{
-			exitStatus(buffer, av);
+			exitStatus(buffer, av, lines);
 			continue;
 		}
 		else if (!num)
