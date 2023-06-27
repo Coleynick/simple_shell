@@ -22,6 +22,7 @@ int input_handle(char **buffer, char *av[])
 	endCommand = strchr(*buffer, '#');
 	if (endCommand != NULL)
 	{
+		if (endCommand[-1] == ' ')
 		*endCommand = '\0';
 	}
 	av[0] = (*buffer);
