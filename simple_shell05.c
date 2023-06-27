@@ -78,6 +78,7 @@ char *av[20] = {NULL}, *p;
 int num = 0, running = 1, input = 0, lines = 0;
 
 buffer = NULL;
+exit_status = 0;
 signal(SIGINT, sigint_handler);
 (void) argc;
 do {
@@ -110,8 +111,6 @@ do {
 			exitStatus(buffer, av);
 			continue;
 		}
-		if (!num && lines)
-			_printf("%s: %d: %s: not found\n", argv[0], lines, av[0]);
 		else if (!num)
 		{
 			printf("./hsh: %d: %s: not found\n", lines, av[0]);
