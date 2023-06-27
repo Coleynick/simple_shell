@@ -83,8 +83,7 @@ signal(SIGINT, sigint_handler);
 do {
 	if (isatty(STDIN_FILENO))
 		_printf("#cisfun$ ");
-	else
-		lines++;
+	lines++;
 	input = input_handle(&buffer, av);
 	check_in(input, &running, &buffer);
 	if (input != -1)
@@ -115,7 +114,7 @@ do {
 			_printf("%s: %d: %s: not found\n", argv[0], lines, av[0]);
 		else if (!num)
 		{
-			printf("./hsh: %s: command not found\n", av[0]);
+			printf("./hsh: %d: %s: not found\n", lines, av[0]);
 			free(buffer);
 			exit_status = 127;
 		}
