@@ -8,7 +8,6 @@
 void exitStatus(char *buffer, char **av)
 {
 	int num = 0, i;
-	char *intCheck;
 	int exit_status;
 
 	if (strncmp(av[0], "exit", 4) == 0)
@@ -22,19 +21,18 @@ void exitStatus(char *buffer, char **av)
 		}
 		else
 		{
-			exit_status = (int)strtol(av[1], &intCheck, 10);
-			if (*intCheck == '\0')
-			{
 				exit_status = atoi(av[1]);
-				free(buffer);
-				exit(exit_status);
-			}
-			else
-			{
+				if (exit_status == 0 && av[1][0] != '0')
+				{
 				_printf("./hsh: exit: Illegal number: %s\n", av[1]);
 				free(buffer);
 				exit(2);
-			}
+				}
+				else
+				{
+					free(buffer);
+					exit(exit_status);
+				}
 		}
 	}
 }
