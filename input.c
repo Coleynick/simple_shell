@@ -50,7 +50,7 @@ int input_handle(char **buffer, char *av[])
 	size_t len = 0;
 	ssize_t read;
 	char *endCommand, **tokens;
-	int i, exit_status;
+	int i;
 
 	read = _getline(buffer, &len, stdin);
 	if (read == -1 || (*buffer)[read - 1] != 10)
@@ -59,7 +59,7 @@ int input_handle(char **buffer, char *av[])
 	}
 	(*buffer)[read - 1] = '\0';
 	endCommand = strchr(*buffer, '#');
-	if (endCommand != NULL)
+	if (endCommand != NULL && endCommand[-1] == ' ')
 	{
 		*endCommand = '\0';
 	}

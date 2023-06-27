@@ -76,7 +76,6 @@ int main(int argc, char **argv)
 {
 char *av[20] = {NULL}, *p;
 int num = 0, running = 1, input = 0, lines = 0;
-int exit_status;
 
 buffer = NULL;
 signal(SIGINT, sigint_handler);
@@ -109,9 +108,17 @@ do {
 		if (!num && lines)
 			_printf("%s: %d: %s: not found\n", argv[0], lines, av[0]);
 		else if (!num)
+		{
 			exe_not_found(av, &buffer, argv[0]);
+			exit_status = 127;
+		}
 		else
 		{
+			if (strncmp("echo", buffer, 4) == 0)
+			{
+				free(buffer);
+				continue;
+			}
 			p = prepare_arguments(&buffer, av, p);
 			running = _fork(av, argv[0], p, &exit_status);
 			free(buffer);
