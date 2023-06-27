@@ -1,4 +1,5 @@
 #include "main.h"
+#include <ctype.h>
 /**
 * exitStatus - Checks the exit status
 * @buffer: input buffer
@@ -21,18 +22,26 @@ void exitStatus(char *buffer, char **av)
 		}
 		else
 		{
-				exit_status = atoi(av[1]);
-				if (exit_status == 0 && av[1][0] != '0')
-				{
-				_printf("./hsh: exit: Illegal number: %s\n", av[1]);
+			if (av[1][0] == '-')
+			{
+				fprintf(stderr, "./hsh: exit: Illegal number: %s\n", av[1]);
 				free(buffer);
 				exit(2);
-				}
-				else
+			}
+				exit_status = 0;
+				for (i = 0; av[1][i] != '\0'; i++)
 				{
-					free(buffer);
-					exit(exit_status);
+					if (!isdigit(av[1][i]))
+					{
+						fprintf(stderr, "./hsh: exit: Illegal number: %s\n", av[1]);
+						free(buffer);
+						exit(2);
+					}
+				exit_status = exit_status * 10 + (av[1][i] - '0');
 				}
+				free(buffer);
+				exit(exit_status);
 		}
+
 	}
 }
